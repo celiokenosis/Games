@@ -1,0 +1,28 @@
+package Principal;
+
+import java.util.Random;
+
+public class Spawner {
+
+	public int curTime = 0;
+	public int targetTime = 60*2;/*a cada 2 segundos*/
+	public Random random;
+	
+	public Spawner() {
+		random = new Random();
+	}
+	
+	public void update() {
+	
+		curTime++;
+		if(curTime == targetTime) {
+			curTime = 0;
+			
+			if(random.nextInt(100) < 50) {
+				Game.crabs.add(new Crab(random.nextInt(Game.WIDTH - 40), -40));
+			}else {
+				Game.crabs.add(new Crab(random.nextInt(Game.WIDTH - 40), Game.HEIGHT-40));
+			}
+		}
+	}
+}
